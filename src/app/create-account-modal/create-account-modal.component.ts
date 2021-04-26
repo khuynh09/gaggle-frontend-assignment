@@ -16,7 +16,12 @@ export class CreateAccountModalComponent implements OnInit {
   fieldTextType: boolean = false;
   eyeOpenIcon: string = '../../assets/icon--eye-open.svg';
   eyeCloseIcon: string = '../../assets/icon--eye-closed.svg';
+  alert: string = '../../assets/icon--alert.svg';
   newAccount: string = '../../assets/hatching-duck.png';
+
+  missingValues = { username: false, password: false, email: false };
+  invalidInputs: boolean = false;
+  errorMessage: string = 'No value provided';
 
   constructor(private formBuilder: FormBuilder) {}
 
@@ -25,9 +30,21 @@ export class CreateAccountModalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // Process checkout data here
-    this.newAccountForm.reset();
+    // this.newAccountForm.reset();
+
+    this.missingValues.username = false;
+    this.missingValues.password = false;
+    this.missingValues.email = false;
+
+    if (!this.newAccountForm.controls['username'].value)
+      this.missingValues.username = true;
+    if (!this.newAccountForm.controls['password'].value)
+      this.missingValues.password = true;
+    if (!this.newAccountForm.controls['email'].value)
+      this.missingValues.email = true;
   }
+
+  closeModal(): void {}
 
   togglePassword(): void {
     this.fieldTextType = !this.fieldTextType;
