@@ -1,0 +1,150 @@
+@import "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css";
+
+.grid-list {
+  min-height: 100vh;
+}
+.stock-img {
+  height: 100%;
+}
+
+.login--container {
+  background: #ffffff;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.content-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-group {
+  position: relative;
+  margin-bottom: 12px;
+}
+
+.input-group label {
+  color: #000000;
+  position: absolute;
+  font-size: 12px;
+  top: 5px;
+  left: 10px;
+}
+
+.input-group input {
+  width: 272px;
+  min-width: 192px;
+  padding-top: 20px;
+  font-size: 16px;
+  height: 20px;
+  border: none;
+  background: white;
+  padding-left: 10px;
+  padding-bottom: 5px;
+}
+
+.input-group .hide-toggle {
+  position: absolute;
+  font-size: 12px;
+  top: 0px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.input-group img {
+  padding-right: 2px;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-group .clear {
+  position: absolute;
+  font-size: 14px;
+  top: 22px;
+  right: 10px;
+  cursor: pointer;
+}
+.input-group input:focus {
+  outline: none;
+  border-bottom: #263a91 3px solid;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+}
+.submit-button {
+  background: #263a91;
+  color: white;
+}
+
+.remember-check {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.checkboxes label {
+  display: inline-block;
+
+  padding-right: 10px;
+
+  white-space: nowrap;
+}
+
+.checkboxes input {
+  vertical-align: middle;
+}
+
+.checkboxes label span {
+  vertical-align: middle;
+}
+
+.hide-text {
+  padding-left: 5px;
+  font-family: "Roboto-Medium", "Helvetica Neue", sans-serif !important;
+}
+
+.bottom-actions {
+  display: flex;
+  justify-content: center;
+  padding: 35px;
+}
+
+.register-button {
+  color: #263a91;
+  padding-right: 20px;
+  border-right: 0.25px solid rgba(0, 0, 0, 0.2);
+}
+
+.fp-button {
+  color: #263a91;
+  padding-left: 20px;
+  border-left: 0.25px solid rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  color: red;
+  margin-left: 5px;
+}
+
+.input-group .error-message {
+  padding: 0;
+  margin: 0;
+  color: red;
+  font-size: 12px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 2px;
+  position: absolute;
+  bottom: 0px;
+}

@@ -1,0 +1,72 @@
+<mat-dialog-content class="mat-typography" style="padding: 0">
+  <mat-grid-list
+    [cols]="breakpoint"
+    rowHeight="fit"
+    class="grid-list"
+    (window:resize)="onResize()"
+  >
+    <mat-grid-tile *ngIf="breakpoint == 4" colspan="1" class="">
+      <div class="image-container">
+        <img width="80" [src]="newAccount" /></div
+    ></mat-grid-tile>
+    <mat-grid-tile
+      colspan="{{ breakpoint == 1 ? 1 : 3 }}"
+      class="content-container"
+    >
+      <div class="content">
+        <form [formGroup]="newAccountForm" (ngSubmit)="onSubmit()">
+          <div class="title">New Account</div>
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              autocomplete="off"
+              id="username"
+              type="text"
+              formControlName="username"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <span class="hide-toggle">
+              <div
+                class="toggle-container"
+                (click)="togglePassword()"
+                *ngIf="!fieldTextType; else elseBlock"
+              >
+                <img [src]="eyeOpenIcon" id="togglePassword" />Hide
+              </div>
+
+              <ng-template #elseBlock
+                ><div class="toggle-container" (click)="togglePassword()">
+                  <img [src]="eyeCloseIcon" id="togglePassword" />Show
+                </div></ng-template
+              >
+            </span>
+            <input
+              id="password"
+              [type]="fieldTextType ? 'text' : 'password'"
+              formControlName="password"
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="username">Email</label>
+            <input
+              autocomplete="off"
+              id="email"
+              type="text"
+              formControlName="email"
+            />
+          </div>
+        </form>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-dialog-content>
+<mat-dialog-actions class="button-actions">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button class="submit-button" mat-button [mat-dialog-close]="true">
+    Register Account
+  </button>
+</mat-dialog-actions>

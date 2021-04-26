@@ -1,0 +1,94 @@
+<mat-grid-list
+  [cols]="breakpoint"
+  rowHeight="100vh"
+  class="grid-list"
+  (window:resize)="onResize($event)"
+>
+  <mat-grid-tile class="login--container">
+    <div class="content-container">
+      <div>
+        <img class="gaggle-logo" [src]="logo" />
+      </div>
+
+      <div class="content">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="input-group">
+            <label for="username">Username</label>
+            <input
+              autocomplete="off"
+              id="username"
+              type="text"
+              formControlName="username"
+              [ngStyle]="{
+                'padding-bottom': missingValues.username ? '20px' : '5px'
+              }"
+            />
+            <div *ngIf="missingValues.username" class="error-message">
+              <img class="alert-icon" [src]="alert" /> {{ this.errorMessage }}
+            </div>
+          </div>
+
+          <div class="input-group">
+            <label for="password">Password</label>
+            <span class="hide-toggle">
+              <div
+                class="toggle-container"
+                (click)="togglePassword()"
+                *ngIf="!fieldTextType; else elseBlock"
+              >
+                <img [src]="eyeOpenIcon" id="togglePassword" />Hide
+              </div>
+
+              <ng-template #elseBlock
+                ><div class="toggle-container" (click)="togglePassword()">
+                  <img [src]="eyeCloseIcon" id="togglePassword" />Show
+                </div></ng-template
+              >
+            </span>
+            <input
+              id="password"
+              [type]="fieldTextType ? 'text' : 'password'"
+              formControlName="password"
+              [ngStyle]="{
+                'padding-bottom': missingValues.password ? '20px' : '5px'
+              }"
+            />
+            <img
+              *ngIf="loginForm.controls['password'].value"
+              class="clear"
+              [src]="clear"
+              (click)="clearPassword()"
+            />
+            <div *ngIf="missingValues.password" class="error-message">
+              <img class="alert-icon" [src]="alert" /> {{ this.errorMessage }}
+            </div>
+          </div>
+
+          <div *ngIf="invalidInputs" class="error-message">
+            <img class="alert-icon" [src]="alert" /> {{ this.errorMessage }}
+          </div>
+
+          <div class="remember-check">
+            <input type="checkbox" id="myCheck" /> Remember
+          </div>
+
+          <div class="button-container">
+            <button mat-flat-button class="submit-button" type="submit">
+              Sign On
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="bottom-actions">
+        <div class="register-button" (click)="openCreateAccountModel()">
+          Register
+        </div>
+        <div class="fp-button">Forgot password?</div>
+      </div>
+    </div>
+  </mat-grid-tile>
+
+  <mat-grid-tile *ngIf="breakpoint != 1"
+    ><img class="stock-img" [src]="stock"
+  /></mat-grid-tile>
+</mat-grid-list>

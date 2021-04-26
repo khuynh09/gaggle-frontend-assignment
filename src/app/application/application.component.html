@@ -1,0 +1,109 @@
+<div class="top-bar">
+  <div class="logo-container">
+    <div class="icon-container">
+      <mat-icon class="app-icon" aria-hidden="false" aria-label="Apps icon"
+        >apps</mat-icon
+      >
+    </div>
+    <div>
+      <img class="logo" [src]="logo" />
+    </div>
+  </div>
+  <div class="status-container">
+    <span>
+      <span><img [src]="alert" /></span
+      ><span class="save-status">Save unsuccessful.</span>
+    </span>
+    <span *ngIf="!saveSucess" class="retry">
+      <mat-spinner [diameter]="16"></mat-spinner><span> Retrying...</span></span
+    >
+  </div>
+</div>
+
+<div class="action-bar">
+  <div class="action-buttons-container">
+    <div class="action-button">
+      <button mat-raised-button>
+        <mat-icon>search</mat-icon>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <div>Button 1</div>
+    </div>
+    <div class="action-button">
+      <button mat-raised-button>
+        <mat-icon>cloud_upload</mat-icon>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+      <div>Button 2</div>
+    </div>
+    <div class="action-button">
+      <button mat-raised-button>
+        <mat-icon>receipt_long</mat-icon>
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+
+      <div>Button 3</div>
+    </div>
+  </div>
+  <div class="filter-container">
+    <div class="input-container">
+      <label for="password"><mat-icon>filter_alt</mat-icon></label>
+      <input placeholder="Find..." autocomplete="off" id="filter" type="text" />
+      <div>Filter by Keyword</div>
+    </div>
+    <div class="export-button">
+      <button mat-raised-button>
+        <mat-icon>download</mat-icon>
+        <mat-icon>expand_more</mat-icon>
+      </button>
+      <div>Export</div>
+    </div>
+  </div>
+</div>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="$event ? masterToggle() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()"
+      >
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)"
+      >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="date">
+    <th class="table-header" mat-header-cell *matHeaderCellDef>Date</th>
+    <td mat-cell *matCellDef="let incident">{{ incident.date }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="incident_type">
+    <th class="table-header" mat-header-cell *matHeaderCellDef>
+      Incident Type
+    </th>
+    <td mat-cell *matCellDef="let incident">{{ incident.incident_type }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th class="table-header" mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let incident">{{ incident.status }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr
+    mat-row
+    *matRowDef="let row; columns: displayedColumns"
+    (click)="selection.toggle(row)"
+  ></tr>
+</table>
